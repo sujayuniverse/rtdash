@@ -1,0 +1,7 @@
+{
+  "name": "rtdashboard",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
