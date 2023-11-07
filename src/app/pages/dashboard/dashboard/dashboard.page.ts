@@ -4,11 +4,11 @@ import { Component,OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
 import Chart from 'chart.js/auto';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: 'home.page.html',
-  styleUrls: ['home.page.scss'],
+  selector: 'app-dashboard',
+  templateUrl: './dashboard.page.html',
+  styleUrls: ['./dashboard.page.scss'],
 })
-export class HomePage {
+export class DashboardPage implements OnInit {
   @ViewChild('pieChartCanvas1', { static: false }) pieChartCanvas1?: ElementRef<HTMLCanvasElement>;
   @ViewChild('pieChartCanvas2', { static: false }) pieChartCanvas2?: ElementRef<HTMLCanvasElement>;
   selectedOption : any 
@@ -64,29 +64,28 @@ export class HomePage {
     }
   }
 
+//footer start
+async Home(){
+  this.router.navigate(['/dashboard']);
+}
 
+async Agents(){
+  this.router.navigate(['/agentlist']);
 
+}
 
-  //footer start
-  async Home(){
-    alert()
-    this.router.navigate(['/dashboard']);
+async ServiceLevel(){
+  this.router.navigate(['/servicelevel']);
+}
 
+async DailyStats(){
+  this.router.navigate(['/dailystats']);
+
+}
+
+//footer end
+
+  ngOnInit() {
   }
 
-  async Agents(){
-    this.router.navigate(['/agentlist']);
-
-  }
-
-  async ServiceLevel(){
-    this.router.navigate(['/servicelevel']);
-  }
-
-  async DailyStats(){
-    this.router.navigate(['/dailystats']);
-
-  }
-
-  //footer end
 }

@@ -1,14 +1,19 @@
-<ion-content fullscreen>
-  <div class="top-cut-bg">
-    <ion-buttons>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
+    <ion-title class="header-text">Dashboard</ion-title>
     <img src="../../assets/img/App_Icon.png" class="admin-image"
-      style="position: absolute; top:6px; right:15px; box-shadow: none!important; height: 40px;" />
-  </div>
+    style="position: absolute; top:6px; right:15px; box-shadow: none!important; height: 40px;" />
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  
 
   <ion-grid>
-    <h6 style="text-align: center;margin-top: auto;margin-bottom: auto;">Daily Stats</h6>
+    <h6 class="all-h6-text">Daily Stats</h6>
 
     <ion-row class="ion-justify-content-center">
 
@@ -20,6 +25,9 @@
             <ion-card-subtitle class="ion-card-subtitle-header">
               Answered 
             </ion-card-subtitle>
+            <ion-card-subtitle>
+              74%
+            </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
 
@@ -27,9 +35,9 @@
 
           </ion-card-content>
           <ion-card-subtitle>
-            74/100 =74%
+            74/100
           </ion-card-subtitle>
-
+         
         </div>
 
       </ion-col>
@@ -40,12 +48,15 @@
             <ion-card-subtitle class="ion-card-subtitle-header">
               Abandoned
             </ion-card-subtitle>
+            <ion-card-subtitle>
+              5%
+            </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
             <canvas #pieChartCanvas2></canvas>
           </ion-card-content>
           <ion-card-subtitle>
-            5/100=5%
+            5/100
           </ion-card-subtitle>
         </div>
 
@@ -57,7 +68,7 @@
 
 
   <ion-grid>
-    <h6 style="text-align: center;margin-top: auto;margin-bottom: auto;">Live Stats</h6>
+    <h6 class="all-h6-text">Live Stats</h6>
 
     <ion-row class="ion-justify-content-center">
 
@@ -107,7 +118,7 @@
 
 
   <ion-grid>
-    <h6 style="text-align: center;margin-top: auto;margin-bottom: auto;">Agent Group Stats</h6>
+    <h6 class="all-h6-text">Agent Group Stats</h6>
 
     <ion-row class="ion-justify-content-center">
 
@@ -204,7 +215,7 @@
 
 
   <ion-grid>
-    <h6 style="text-align: center;margin-top: auto;margin-bottom: auto;">Skills</h6>
+    <h6 class="all-h6-text">Skills</h6>
 
     <ion-row class="ion-justify-content-center">
 
@@ -224,11 +235,6 @@
               </tr>
             </thead>
             <tbody>
-              <!-- Dummy Data Rows -->
-
-
-
-
               <tr>
                 <td>Imperial</td>
                 <td>200</td>
@@ -244,9 +250,6 @@
                 <td>21</td>
                 <td>25</td>
               </tr>
-
-
-
             </tbody>
           </table>
 
@@ -269,34 +272,29 @@
 
 </ion-content>
 
+
 <ion-footer>
   <ion-tabs>
-
-
-
     <ion-tab-bar slot="bottom" class="ion-no-border">
       <ion-tab-button (click)="Home()">
         <ion-icon name="home"></ion-icon>
-        <ion-label (click)="Home()">Home</ion-label>
+        <ion-label>Home</ion-label>
       </ion-tab-button>
 
       <ion-tab-button class="comments" (click)="Agents()">
-        <ion-icon name="add-circle"></ion-icon>
+        <ion-icon name="people"></ion-icon>
         <ion-label>Agents</ion-label>
       </ion-tab-button>
 
-      <!-- <svg height="50" viewBox="0 0 100 50" width="100" xmlns="http://www.w3.org/2000/svg">
-        <path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z" fill="red" fill-rule="evenodd">
-        </path>
-      </svg> -->
+      
 
       <ion-tab-button class="notifs" (click)="ServiceLevel()">
-        <ion-icon name="notifications"></ion-icon>
+        <ion-icon name="pie-chart"></ion-icon>
         <ion-label>Service Level</ion-label>
       </ion-tab-button>
 
       <ion-tab-button>
-        <ion-icon name="briefcase" (click)="DailyStats()"></ion-icon>
+        <ion-icon name="stats-chart" (click)="DailyStats()"></ion-icon>
         <ion-label>Daily Stats</ion-label>
       </ion-tab-button>
     </ion-tab-bar>

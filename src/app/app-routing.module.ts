@@ -11,6 +11,27 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'dashboard',
+    loadChildren: () => import('./pages/dashboard/dashboard/dashboard.module').then( m => m.DashboardPageModule)
+  },
+  {
+    path: 'agentlist',
+    loadChildren: () => import('./pages/dashboard/agentlist/agentlist.module').then( m => m.AgentlistPageModule)
+  },
+  {
+    path: 'servicelevel',
+    loadChildren: () => import('./pages/dashboard/servicelevel/servicelevel.module').then( m => m.ServicelevelPageModule)
+  },
+  {
+    path: 'dailystats',
+    loadChildren: () => import('./pages/dashboard/dailystats/dailystats.module').then( m => m.DailystatsPageModule)
+  },
+ 
 ];
 
 @NgModule({
