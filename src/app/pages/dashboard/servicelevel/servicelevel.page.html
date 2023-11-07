@@ -1,13 +1,148 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>servicelevel</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="header-text">Dashboard</ion-title>
+    <img src="../../assets/img/App_Icon.png" class="admin-image"
+    style="position: absolute; top:6px; right:15px; box-shadow: none!important; height: 40px;" />
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">servicelevel</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content fullscreen>
+  
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size=12>
+        <div class="white-box">
+          <ion-card-header>
+            <ion-card-subtitle class="ion-card-subtitle-header">
+              Overall 
+            </ion-card-subtitle>
+            <ion-card-subtitle>
+              90%
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #pieChartCanvas1></canvas>
+          </ion-card-content>         
+        </div>
+      </ion-col>
+
+    
+    </ion-row>
+  </ion-grid>
+
+
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size=6>
+        <div class="white-box">
+          <ion-card-header>
+            <ion-card-subtitle class="ion-card-subtitle-header">
+              General 
+            </ion-card-subtitle>
+            <ion-card-subtitle>
+              75%
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #pieChartCanvas2></canvas>
+          </ion-card-content>
+        </div>
+
+      </ion-col>
+
+      <ion-col size=6>
+        <div class="white-box">
+          <ion-card-header>
+            <ion-card-subtitle class="ion-card-subtitle-header">
+              Imperial 
+            </ion-card-subtitle>
+            <ion-card-subtitle>
+              85%
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #pieChartCanvas3></canvas>
+          </ion-card-content>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size=3>
+      </ion-col>
+      <ion-col size=6>
+        <div class="white-box">
+          <ion-card-header>
+            <ion-card-subtitle class="ion-card-subtitle-header">
+              POM 
+            </ion-card-subtitle>
+            <ion-card-subtitle>
+              60%
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #pieChartCanvas4></canvas>
+          </ion-card-content>     
+        </div>
+      </ion-col>
+
+      <ion-col size=3>
+      
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+
+
+
+
+
+<ion-grid>
+  <div>
+    <p>&nbsp;
+    </p>
+  </div>
+</ion-grid>
+
 </ion-content>
+
+
+<ion-footer>
+  <ion-tabs>
+    <ion-tab-bar slot="bottom" class="ion-no-border">
+      <ion-tab-button (click)="Home()">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button class="comments" (click)="Agents()">
+        <ion-icon name="people"></ion-icon>
+        <ion-label>Agents</ion-label>
+      </ion-tab-button>
+
+      
+
+      <ion-tab-button class="notifs" (click)="ServiceLevel()">
+        <ion-icon name="pie-chart"></ion-icon>
+        <ion-label>Service Level</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button>
+        <ion-icon name="stats-chart" (click)="DailyStats()"></ion-icon>
+        <ion-label>Daily Stats</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+</ion-footer>

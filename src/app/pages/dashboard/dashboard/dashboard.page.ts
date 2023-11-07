@@ -1,7 +1,8 @@
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Component,OnInit, ViewChild, ElementRef, NgZone } from '@angular/core';
+import { Component,OnInit, ViewChild, ElementRef, NgZone , AfterViewInit} from '@angular/core';
 import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,20 +10,22 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  @ViewChild('pieChartCanvas1', { static: false }) pieChartCanvas1?: ElementRef<HTMLCanvasElement>;
-  @ViewChild('pieChartCanvas2', { static: false }) pieChartCanvas2?: ElementRef<HTMLCanvasElement>;
+
+  @ViewChild('pieChartCanvas5', { static: false }) pieChartCanvas5?: ElementRef<HTMLCanvasElement>;
+  @ViewChild('pieChartCanvas6', { static: false }) pieChartCanvas6?: ElementRef<HTMLCanvasElement>;
+ 
   selectedOption : any 
   constructor(private router: Router, private route: ActivatedRoute, private ngZone: NgZone) {}
 
 
 
-
   ngAfterViewInit() {
-    this.createChart(this.pieChartCanvas1, [10, 90], ['white', '#e16167'], '90/100');
-    this.createChart(this.pieChartCanvas2, [25, 75], ['white', '#e16167'], '25/100');
+    this.createChart(this.pieChartCanvas5, [10, 90], [ '#8a8c8f','#d31d25']);
+    this.createChart(this.pieChartCanvas6, [25, 75], [ '#8a8c8f','#d31d25']);
+    // this.createChart(this.pieChartCanvas3, [15, 85], [ '#8a8c8f','#d31d25']);
+    // this.createChart(this.pieChartCanvas4, [40, 60], [ '#8a8c8f','#d31d25']);
   }
-  
-  private createChart(canvas: ElementRef<HTMLCanvasElement> | undefined, data: number[], colors: string[], text: string) {
+  private createChart(canvas: ElementRef<HTMLCanvasElement> | undefined, data: number[], colors: string[]) {
     if (canvas) {
       const chartCtx = canvas.nativeElement.getContext('2d');
   
@@ -31,8 +34,9 @@ export class DashboardPage implements OnInit {
           datasets: [{
             data: data,
             backgroundColor: colors,
-            hoverBackgroundColor: colors
-          }]
+            hoverBackgroundColor: colors,
+          }],
+          // labels: ['KPI1', 'KPI2'],
         };
   
         const options = {
@@ -40,29 +44,33 @@ export class DashboardPage implements OnInit {
           maintainAspectRatio: false,
           cutout: '70%',
           plugins: {
-            legend: {
-              display: false
+            datalabels: {
+              formatter: (value: number, context: any) => {
+                const total = context.chart.data.datasets[0].data.reduce((acc: number, curr: number) => acc + curr, 0);
+                const percentage = ((value / total) * 100).toFixed(1) + '%';
+                return percentage;
+              },
+              anchor: 'center',
+              color: 'white',
+              font: {
+                weight: 'bold', // Set the font weight to 'bold'
+                size: 20, // Adjust the font size to your preferred value
+              },
             },
-            tooltip: {
-              enabled: false
-            }
-          }
+          },
         };
+  
+        Chart.register(ChartDataLabels);
   
         new Chart(chartCtx, {
           type: 'doughnut',
           data: chartData,
-          options: options
+          // options: options,
         });
-  
-        // Draw the text in the middle of the doughnut chart
-        chartCtx.font = '16px Arial';
-        chartCtx.fillStyle = '#000';
-        chartCtx.textAlign = 'center';
-        chartCtx.fillText(text, canvas.nativeElement.width / 2, canvas.nativeElement.height / 2);
       }
     }
   }
+
 
 //footer start
 async Home(){
