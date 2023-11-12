@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button color="light"></ion-menu-button>
     </ion-buttons>
-    <ion-title class="header-text">Dashboard</ion-title>
+    <ion-title class="header-text">Service Level</ion-title>
     <img src="../../assets/img/App_Icon.png" class="admin-image"
     style="position: absolute; top:6px; right:15px; box-shadow: none!important; height: 40px;" />
   </ion-toolbar>
@@ -38,7 +38,7 @@
 
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col size=6>
+      <ion-col size=4>
         <div class="white-box">
           <ion-card-header>
             <ion-card-subtitle class="ion-card-subtitle-header">
@@ -55,7 +55,7 @@
 
       </ion-col>
 
-      <ion-col size=6>
+      <ion-col size=4>
         <div class="white-box">
           <ion-card-header>
             <ion-card-subtitle class="ion-card-subtitle-header">
@@ -70,13 +70,30 @@
           </ion-card-content>
         </div>
       </ion-col>
+
+      <ion-col size=4>
+        <div class="white-box">
+          <ion-card-header>
+            <ion-card-subtitle class="ion-card-subtitle-header">
+              POM 
+            </ion-card-subtitle>
+            <ion-card-subtitle>
+              60%
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #pieChartCanvas4></canvas>
+          </ion-card-content>     
+        </div>
+      </ion-col>
+
     </ion-row>
   </ion-grid>
 
 
 
 
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row class="ion-justify-content-center">
       <ion-col size=3>
       </ion-col>
@@ -95,14 +112,28 @@
           </ion-card-content>     
         </div>
       </ion-col>
-
+      <ion-col size=6>
+        <div class="white-box">
+          <ion-card-header>
+            <ion-card-subtitle class="ion-card-subtitle-header">
+              POM 
+            </ion-card-subtitle>
+            <ion-card-subtitle>
+              60%
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #pieChartCanvas4></canvas>
+          </ion-card-content>     
+        </div>
+      </ion-col>
       <ion-col size=3>
       
 
       </ion-col>
     </ion-row>
   </ion-grid>
-
+ -->
 
 
 

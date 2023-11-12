@@ -20,8 +20,8 @@ export class DashboardPage implements OnInit {
 
 
   ngAfterViewInit() {
-    this.createChart(this.pieChartCanvas5, [10, 90], [ '#8a8c8f','#d31d25']);
-    this.createChart(this.pieChartCanvas6, [25, 75], [ '#8a8c8f','#d31d25']);
+    this.createChart(this.pieChartCanvas5, [10, 90], [ '#f6fcfd','#d31d25']);
+    this.createChart(this.pieChartCanvas6, [10, 90], [ '#f6fcfd','#d31d25']);
     // this.createChart(this.pieChartCanvas3, [15, 85], [ '#8a8c8f','#d31d25']);
     // this.createChart(this.pieChartCanvas4, [40, 60], [ '#8a8c8f','#d31d25']);
   }
@@ -51,11 +51,15 @@ export class DashboardPage implements OnInit {
                 return percentage;
               },
               anchor: 'center',
-              color: 'white',
               font: {
                 weight: 'bold', // Set the font weight to 'bold'
                 size: 20, // Adjust the font size to your preferred value
+                color: '#FFFFFF',
+
               },
+
+         
+
             },
           },
         };
