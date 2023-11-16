@@ -37,6 +37,10 @@ const routes: Routes = [
     path: 'dailystats',
     loadChildren: () => import('./pages/dashboard/dailystats/dailystats.module').then( m => m.DailystatsPageModule)
   },
+  {
+    path: 'charttest',
+    loadChildren: () => import('./pages/dashboard/charttest/charttest.module').then( m => m.CharttestPageModule)
+  },
  
 ];
 

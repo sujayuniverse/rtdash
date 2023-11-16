@@ -14,23 +14,42 @@
 
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col size=12>
+      <ion-col size=6>
         <div class="white-box">
           <ion-card-header>
-            <ion-card-subtitle class="ion-card-subtitle-header">
-              Overall 
-            </ion-card-subtitle>
-            <ion-card-subtitle>
-              90%
+            <ion-card-subtitle class="ion-card-subtitle-header-footer">
+              Overall - 90%
             </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
             <canvas #pieChartCanvas1></canvas>
-          </ion-card-content>         
+          </ion-card-content>      
+          <ion-card-subtitle class="ion-card-subtitle-header-footer">
+            Answered : 4,800 <br>
+            Offered : 5,000
+          </ion-card-subtitle> 
+           
         </div>
       </ion-col>
 
-    
+      <ion-col size=6>
+        <div class="white-box">
+          <ion-card-header>           
+            <ion-card-subtitle class="ion-card-subtitle-header-footer">
+              General - 75%
+            </ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #pieChartCanvas2></canvas>
+          </ion-card-content>
+          <ion-card-subtitle class="ion-card-subtitle-header-footer">
+            Answered : 4,800 <br>
+            Offered : 5,000
+          </ion-card-subtitle>
+        </div>
+
+      </ion-col>
+
     </ion-row>
   </ion-grid>
 
@@ -38,52 +57,44 @@
 
   <ion-grid>
     <ion-row class="ion-justify-content-center">
-      <ion-col size=4>
+   
+      <ion-col size=6>
         <div class="white-box">
           <ion-card-header>
-            <ion-card-subtitle class="ion-card-subtitle-header">
-              General 
+            <ion-card-subtitle class="ion-card-subtitle-header-footer">
+              Imperial - 85%
             </ion-card-subtitle>
-            <ion-card-subtitle>
-              75%
-            </ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <canvas #pieChartCanvas2></canvas>
-          </ion-card-content>
-        </div>
+           
 
-      </ion-col>
-
-      <ion-col size=4>
-        <div class="white-box">
-          <ion-card-header>
-            <ion-card-subtitle class="ion-card-subtitle-header">
-              Imperial 
-            </ion-card-subtitle>
-            <ion-card-subtitle>
-              85%
-            </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
             <canvas #pieChartCanvas3></canvas>
           </ion-card-content>
+
+          <ion-card-subtitle class="ion-card-subtitle-header-footer">
+            Answered : 4,800 <br>
+            Offered : 5,000
+          </ion-card-subtitle>
         </div>
       </ion-col>
 
-      <ion-col size=4>
+      <ion-col size=6>
         <div class="white-box">
           <ion-card-header>
-            <ion-card-subtitle class="ion-card-subtitle-header">
-              POM 
+          
+            <ion-card-subtitle class="ion-card-subtitle-header-footer">
+              POM - 60%
             </ion-card-subtitle>
-            <ion-card-subtitle>
-              60%
-            </ion-card-subtitle>
+           
           </ion-card-header>
           <ion-card-content>
             <canvas #pieChartCanvas4></canvas>
-          </ion-card-content>     
+          </ion-card-content>  
+          
+          <ion-card-subtitle class="ion-card-subtitle-header-footer">
+            Answered : 4,800 <br>
+            Offered : 5,000
+          </ion-card-subtitle>
         </div>
       </ion-col>
 

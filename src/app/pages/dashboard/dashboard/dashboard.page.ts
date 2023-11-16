@@ -21,7 +21,7 @@ export class DashboardPage implements OnInit {
 
   ngAfterViewInit() {
     this.createChart(this.pieChartCanvas5, [10, 90], [ '#f6fcfd','#d31d25']);
-    this.createChart(this.pieChartCanvas6, [10, 90], [ '#f6fcfd','#d31d25']);
+    this.createChart(this.pieChartCanvas6, [20, 80], [ '#f6fcfd','#d31d25']);
     // this.createChart(this.pieChartCanvas3, [15, 85], [ '#8a8c8f','#d31d25']);
     // this.createChart(this.pieChartCanvas4, [40, 60], [ '#8a8c8f','#d31d25']);
   }

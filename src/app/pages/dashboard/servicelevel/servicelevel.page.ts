@@ -19,10 +19,10 @@ export class ServicelevelPage implements OnInit {
   constructor(private router: Router) { }
 
   ngAfterViewInit() {
-    this.createChart(this.pieChartCanvas1, [10, 90], [ '#8a8c8f','#d31d25']);
-    this.createChart(this.pieChartCanvas2, [25, 75], [ '#8a8c8f','#d31d25']);
-    this.createChart(this.pieChartCanvas3, [15, 85], [ '#8a8c8f','#d31d25']);
-    this.createChart(this.pieChartCanvas4, [40, 60], [ '#8a8c8f','#d31d25']);
+    this.createChart(this.pieChartCanvas1, [10, 90], [ '#f6fcfd','#d31d25']);
+    this.createChart(this.pieChartCanvas2, [25, 75], [ '#f6fcfd','#d31d25']);
+    this.createChart(this.pieChartCanvas3, [15, 85], [ '#f6fcfd','#d31d25']);
+    this.createChart(this.pieChartCanvas4, [40, 60], [ '#f6fcfd','#d31d25']);
   }
   private createChart(canvas: ElementRef<HTMLCanvasElement> | undefined, data: number[], colors: string[]) {
     if (canvas) {
