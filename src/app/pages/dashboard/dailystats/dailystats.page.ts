@@ -16,33 +16,38 @@ export class DailystatsPage implements OnInit {
     this.ThresholdGaugeChart();
     this.ACDTimeGaugeChart()
   }
-
+ 
   GaugeChartFor_AvgCallInteraction() {
     const element = document.querySelector('#gaugeArea') as HTMLElement;
-    const percentageTextElement = document.querySelector('#percentageText') as HTMLElement;
-
-    if (element && percentageTextElement) {
+    const timeTextElement = document.querySelector('#timeText') as HTMLElement;
+  
+    if (element && timeTextElement) {
       const gaugeOptions = {
         hasNeedle: true,
         needleColor: 'rgba(212,30,38,1)',
         needleUpdateSpeed: 1000,
         arcColors: ['rgba(212,30,38,1)', 'lightgray'],
-        arcDelimiters: [70],
-        rangeLabel: ['0', '100'],
-        // centralLabel: '50',
+        arcDelimiters: [70], // represents 70% of the gauge (adjust this for your specific needs)
+        rangeLabel: ['00:00', '10:00'], // corresponds to 00:00 to 10:00
+        // centralLabel: '5:00', // middle label if needed
       };
-
+  
       const gaugeChart = GaugeChart.gaugeChart(element, 300, gaugeOptions);
-
-      let currentValue = 70; // Set the initial value to the boundary value
-      gaugeChart.updateNeedle(currentValue); // Set the needle position initially
-
-      // Update the text below the gauge chart to reflect the value
-      percentageTextElement.textContent = `Avg. Call Interaction - ${currentValue.toFixed(2)}%`;
+  
+      let currentValue = 7; // Set the initial value in minutes (e.g., 7 minutes)
+      const percentage = (currentValue / 10) * 100; // convert minutes to a percentage of the maximum (10 minutes)
+      gaugeChart.updateNeedle(percentage); // Set the needle position based on percentage
+  
+      // Format the time to display in HH:mm format
+      const formattedTime = `${currentValue.toString().padStart(2, '0')}:00`;
+      timeTextElement.textContent = `Avg. ACD time - ${formattedTime}`;
     } else {
-      console.error('Element with id "gaugeArea" or "percentageText" not found');
+      console.error('Element with id "gaugeArea" or "timeText" not found');
     }
   }
+  
+
+
 
   ThresholdGaugeChart() {
     const element3 = document.querySelector('#thresholdGaugeArea') as HTMLElement;
@@ -51,24 +56,26 @@ export class DailystatsPage implements OnInit {
     if (element3 && percentageTextElement3) {
       const gaugeOptions3 = {
         hasNeedle: true,
-        needleColor: 'rgba(212,30,38,1)',
+        needleColor: 'green',
         needleUpdateSpeed: 1500,
-        arcColors: ['rgba(212,30,38,1)', 'lightgray'],
-        arcDelimiters: [60],
-        rangeLabel: ['0', '100'],
+        arcColors: ['green', 'lightgray'],
+        arcDelimiters: [85],
+        rangeLabel: ['0%', '100%'],
       };
 
       const gaugeChart3 = GaugeChart.gaugeChart(element3, 300, gaugeOptions3);
 
-      let currentValue3 = 60; // Set the initial value to the boundary value
+      let currentValue3 = 85; // Set the initial value to the boundary value
       gaugeChart3.updateNeedle(currentValue3); // Set the needle position initially
 
       // Update the text below the gauge chart to reflect the value
-      percentageTextElement3.textContent = `Threshold Service Level - ${currentValue3.toFixed(2)}%`;
+      percentageTextElement3.textContent = `Service Level - ${currentValue3.toFixed(2)}%`;
     } else {
       console.error('Element with id "thresholdGaugeArea" or "thresholdPercentageText" not found');
     }
   }
+
+  
 
   ACDTimeGaugeChart() {
     const element4 = document.querySelector('#ACDTimeGaugeArea') as HTMLElement;
@@ -77,16 +84,16 @@ export class DailystatsPage implements OnInit {
     if (element4 && percentageTextElement4) {
       const gaugeOptions4 = {
         hasNeedle: true,
-        needleColor: 'rgba(212,30,38,1)',
+        needleColor: 'green',
         needleUpdateSpeed: 1500,
-        arcColors: ['rgba(212,30,38,1)', 'lightgray'],
-        arcDelimiters: [80],
-        rangeLabel: ['0', '100'],
+        arcColors: ['green', 'lightgray'],
+        arcDelimiters: [95],
+        rangeLabel: ['0%', '100%'],
       };
 
       const gaugeChart4 = GaugeChart.gaugeChart(element4, 300, gaugeOptions4);
 
-      let currentValue4 = 80; // Set the initial value to the boundary value
+      let currentValue4 = 95; // Set the initial value to the boundary value
       gaugeChart4.updateNeedle(currentValue4); // Set the needle position initially
 
       // Update the text below the gauge chart to reflect the value
