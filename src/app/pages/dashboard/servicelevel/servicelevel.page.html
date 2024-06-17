@@ -18,15 +18,15 @@
         <div class="white-box">
           <ion-card-header>
             <ion-card-subtitle class="ion-card-subtitle-header-footer">
-              Overall - 90%
+              Overall - {{OverallData.Percentage}}%
             </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
             <canvas #pieChartCanvas1></canvas>
           </ion-card-content>      
           <ion-card-subtitle class="ion-card-subtitle-header-footer">
-            Answered : 4,800 <br>
-            Offered &nbsp;&nbsp;&nbsp;&nbsp;: 5,000
+            Answered : {{OverallData.Answered}} <br>
+            Offered &nbsp;&nbsp;&nbsp;&nbsp;: {{OverallData.Offered}}
           </ion-card-subtitle> 
            
         </div>
@@ -36,15 +36,15 @@
         <div class="white-box">
           <ion-card-header>           
             <ion-card-subtitle class="ion-card-subtitle-header-footer">
-              General - 75%
+              General - {{GeneralData.Percentage}}%
             </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
             <canvas #pieChartCanvas2></canvas>
           </ion-card-content>
           <ion-card-subtitle class="ion-card-subtitle-header-footer">
-            Answered : 4,800 <br>
-            Offered &nbsp;&nbsp;&nbsp;&nbsp;: 5,000
+            Answered : {{GeneralData.Answered}}  <br>
+            Offered &nbsp;&nbsp;&nbsp;&nbsp;:  {{GeneralData.Offered}}
           </ion-card-subtitle>
         </div>
 
@@ -62,7 +62,7 @@
         <div class="white-box">
           <ion-card-header>
             <ion-card-subtitle class="ion-card-subtitle-header-footer">
-              Imperial - 85%
+              Imperial - {{ImperialData.Percentage}}%
             </ion-card-subtitle>
            
 
@@ -72,8 +72,8 @@
           </ion-card-content>
 
           <ion-card-subtitle class="ion-card-subtitle-header-footer">
-            Answered : 4,800 <br>
-            Offered &nbsp;&nbsp;&nbsp;&nbsp;: 5,000
+            Answered : {{ImperialData.Answered}} <br>
+            Offered &nbsp;&nbsp;&nbsp;&nbsp;:  {{ImperialData.Offered}}
           </ion-card-subtitle>
         </div>
       </ion-col>
@@ -83,7 +83,7 @@
           <ion-card-header>
           
             <ion-card-subtitle class="ion-card-subtitle-header-footer">
-              POM - 60%
+              POM - {{POMData.Percentage}}%
             </ion-card-subtitle>
            
           </ion-card-header>
@@ -92,8 +92,10 @@
           </ion-card-content>  
           
           <ion-card-subtitle class="ion-card-subtitle-header-footer">
-            Attempted : 4,800 <br>
-            Connected : 5,000
+            Connected : {{POMData.connected}}
+            <br>
+            Attempted : {{POMData.attempted}} 
+
           </ion-card-subtitle>
         </div>
       </ion-col>
