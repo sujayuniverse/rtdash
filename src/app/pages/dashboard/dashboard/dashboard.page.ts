@@ -1,28 +1,24 @@
 import { Router, NavigationExtras } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, ViewChild, ElementRef, NgZone, AfterViewInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, NgZone } from '@angular/core';
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { HttpClient } from '@angular/common/http';
 import { HTTP } from '@awesome-cordova-plugins/http/ngx';
-import { RestApiService } from 'src/app/rest-api.service'
-import { AlertController, LoadingController, NavController } from '@ionic/angular';
+import { RestApiService } from 'src/app/rest-api.service';
+import { AlertController, LoadingController, NavController, Platform, ToastController } from '@ionic/angular';
 import { SetbaseurlService } from 'src/app/setbaseurl.service';
-import { Platform } from '@ionic/angular';
-import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.page.html',
   styleUrls: ['./dashboard.page.scss'],
 })
-export class DashboardPage implements OnInit {
-
-
+export class DashboardPage implements OnInit, OnDestroy {
   @ViewChild('pieChartCanvas5', { static: false }) pieChartCanvas5?: ElementRef<HTMLCanvasElement>;
   @ViewChild('pieChartCanvas6', { static: false }) pieChartCanvas6?: ElementRef<HTMLCanvasElement>;
 
-  selectedOption: any
+  selectedOption: any;
   Site_url: string = "";
   SchoolId: string = "";
   AnsweredCalls: any = "";
@@ -30,33 +26,49 @@ export class DashboardPage implements OnInit {
   LiveCallStats: any = "";
   Agentstats: any = "";
   SkillStatList: any = "";
-  // SchoolAdmissionList: any = "";
-  // private fetchDataInterval: any;
+  private fetchDataInterval: any;
 
   constructor(private router: Router,
-    private route: ActivatedRoute,
-    private ngZone: NgZone,
-    private http: HttpClient,
-    private baseurl: SetbaseurlService,
-    public restApiService: RestApiService,
-    private alertCtrl: AlertController,
-    public loadingController: LoadingController,
-    private toastController: ToastController,
-    private platform: Platform,
-    private activatedRoute: ActivatedRoute) {
-    this.Site_url = this.baseurl.Set_base_url
-    this.GetData()
+              private route: ActivatedRoute,
+              private ngZone: NgZone,
+              private http: HttpClient,
+              private baseurl: SetbaseurlService,
+              public restApiService: RestApiService,
+              private alertCtrl: AlertController,
+              public loadingController: LoadingController,
+              private toastController: ToastController,
+              private platform: Platform,
+              private activatedRoute: ActivatedRoute) {
+    this.Site_url = this.baseurl.Set_base_url;
   }
 
+  ngOnInit() {
+    this.GetData();
+  }
+
+  ionViewWillEnter() {
+    console.log("DashboardPage ionViewWillEnter called");
+    this.GetData();
+  }
+
+  ionViewWillLeave() {
+    console.log("DashboardPage ionViewWillLeave called");
+    if (this.fetchDataInterval) {
+      clearInterval(this.fetchDataInterval);
+      console.log("fetchDataInterval cleared");
+    }
+  }
+
+  ngOnDestroy() {
+    console.log("DashboardPage ngOnDestroy called");
+    if (this.fetchDataInterval) {
+      clearInterval(this.fetchDataInterval);
+      console.log("fetchDataInterval cleared");
+    }
+  }
 
   async GetData() {
     const fetchData = async () => {
-      // const loading = await this.loadingController.create({
-      //   message: 'Please wait',
-      //   duration: 20000
-      // });
-      // await loading.present();
-
       this.http.get(this.Site_url + 'get_answeredcalls').subscribe(data => {
         this.AnsweredCalls = data;
         console.log('Answered Calls', this.AnsweredCalls);
@@ -83,15 +95,19 @@ export class DashboardPage implements OnInit {
         this.SkillStatList = data;
         console.log('Skill Stat List', this.SkillStatList);
       });
-
-      // loading.dismiss();
     };
+
+    // Clear any existing intervals before setting a new one
+    if (this.fetchDataInterval) {
+      clearInterval(this.fetchDataInterval);
+      console.log("Previous fetchDataInterval cleared before setting new one");
+    }
 
     // Call initially and then every 15 seconds
     fetchData();
-    setInterval(fetchData, 15000); // 15 seconds interval in milliseconds
+    this.fetchDataInterval = setInterval(fetchData, 15000); // 15 seconds interval in milliseconds
+    console.log("fetchDataInterval set");
   }
-
 
   private createChart(canvas: ElementRef<HTMLCanvasElement> | undefined, data: number[], colors: string[]) {
     if (canvas) {
@@ -124,32 +140,25 @@ export class DashboardPage implements OnInit {
               },
               anchor: 'center',
               font: {
-                weight: 'bold', // Set the font weight to 'bold'
-                size: 20, // Adjust the font size to your preferred value
+                weight: 'bold',
+                size: 20,
                 color: '#FFFFFF',
               },
-
-
-
             },
           },
         };
-
 
         Chart.register(ChartDataLabels);
 
         const newChart = new Chart(chartCtx, {
           type: 'doughnut',
           data: chartData,
-          // options: options,
         });
 
         (canvas.nativeElement as any).myChart = newChart;
       }
     }
   }
-
-
 
   //footer start
   async Home() {
@@ -158,7 +167,6 @@ export class DashboardPage implements OnInit {
 
   async Agents() {
     this.router.navigate(['/agentlist']);
-
   }
 
   async ServiceLevel() {
@@ -167,10 +175,5 @@ export class DashboardPage implements OnInit {
 
   async DailyStats() {
     this.router.navigate(['/dailystats']);
-
   }
-
-  ngOnInit() {
-  }
-
 }

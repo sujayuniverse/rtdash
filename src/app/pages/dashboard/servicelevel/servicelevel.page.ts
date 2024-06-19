@@ -25,6 +25,7 @@ export class ServicelevelPage implements OnInit, AfterViewInit {
   ImperialData: any = "";
   GeneralData: any = "";
   POMData: any = "";
+  private fetchDataInterval: any;
 
   constructor(
     private router: Router,
@@ -46,6 +47,32 @@ export class ServicelevelPage implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     // Initial chart creation if needed
   }
+  
+  ngOnInit() {
+    this.GetData();
+  }
+
+  ionViewWillEnter() {
+    console.log("ServicelevelPage ionViewWillEnter called");
+    this.GetData();
+  }
+
+  ionViewWillLeave() {
+    console.log("ServicelevelPage ionViewWillLeave called");
+    if (this.fetchDataInterval) {
+      clearInterval(this.fetchDataInterval);
+      console.log("ServicelevelPage fetchDataInterval cleared");
+    }
+  }
+
+  ngOnDestroy() {
+    console.log("ServicelevelPage ngOnDestroy called");
+    if (this.fetchDataInterval) {
+      clearInterval(this.fetchDataInterval);
+      console.log("ServicelevelPage fetchDataInterval cleared");
+    }
+  }
+
 
   async GetData() {
     const fetchData = async () => {
@@ -83,8 +110,18 @@ export class ServicelevelPage implements OnInit, AfterViewInit {
     };
 
     // Call initially and then every 15 seconds
+    // fetchData();
+    // setInterval(fetchData, 15000); // 15 seconds interval in milliseconds
+    // Clear any existing intervals before setting a new one
+    if (this.fetchDataInterval) {
+      clearInterval(this.fetchDataInterval);
+      console.log("Previous fetchDataInterval cleared before setting new one");
+    }
+
+    // Call initially and then every 15 seconds
     fetchData();
-    setInterval(fetchData, 15000); // 15 seconds interval in milliseconds
+    this.fetchDataInterval = setInterval(fetchData, 15000); // 15 seconds interval in milliseconds
+    console.log("fetchDataInterval set");
   }
 
   private createChart(canvas: ElementRef<HTMLCanvasElement> | undefined, data: number[], colors: string[]) {
@@ -156,5 +193,5 @@ export class ServicelevelPage implements OnInit, AfterViewInit {
     this.router.navigate(['/dailystats']);
   }
 
-  ngOnInit() {}
+
 }

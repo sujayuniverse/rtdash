@@ -21,6 +21,7 @@ export class AgentlistPage implements OnInit {
 
   Site_url: string = "";
   AgentList: any =""
+  private fetchDataInterval: any;
 
   
   
@@ -40,6 +41,31 @@ export class AgentlistPage implements OnInit {
     this.GetData()
   }
 
+  
+  ngOnInit() {
+    this.GetData();
+  }
+
+  ionViewWillEnter() {
+    console.log("agentlist ionViewWillEnter called");
+    this.GetData();
+  }
+
+  ionViewWillLeave() {
+    console.log("agentlist ionViewWillLeave called");
+    if (this.fetchDataInterval) {
+      clearInterval(this.fetchDataInterval);
+      console.log("fetchDataInterval cleared");
+    }
+  }
+
+  ngOnDestroy() {
+    console.log("agentlist ngOnDestroy called");
+    if (this.fetchDataInterval) {
+      clearInterval(this.fetchDataInterval);
+      console.log("fetchDataInterval cleared");
+    }
+  }
 
   async GetData() {
     const fetchData = async () => {
@@ -59,8 +85,20 @@ export class AgentlistPage implements OnInit {
     };
 
     // Call initially and then every 15 seconds
-    fetchData();
-    setInterval(fetchData, 15000); // 15 seconds interval in milliseconds
+    // fetchData();
+    // setInterval(fetchData, 15000); // 15 seconds interval in milliseconds
+
+
+      // Clear any existing intervals before setting a new one
+      if (this.fetchDataInterval) {
+        clearInterval(this.fetchDataInterval);
+        console.log("Previous fetchDataInterval cleared before setting new one");
+      }
+  
+      // Call initially and then every 15 seconds
+      fetchData();
+      this.fetchDataInterval = setInterval(fetchData, 15000); // 15 seconds interval in milliseconds
+      console.log("fetchDataInterval set");
   }
 
   
@@ -85,7 +123,7 @@ async DailyStats(){
 
 //footer end
 
-  ngOnInit() {
-  }
+  // ngOnInit() {
+  // }
 
 }
