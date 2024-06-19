@@ -33,6 +33,11 @@ export class AppComponent {
           title: "Threshold Stats",
           url: "/dailystats",
           icon: "stats-chart"
+        },
+        {
+          title: "Logout",
+          url: "/login",
+          icon: "log-out"
         }
         // {
         //   title: "My Profile",

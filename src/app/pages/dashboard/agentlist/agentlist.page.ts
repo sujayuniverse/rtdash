@@ -43,11 +43,11 @@ export class AgentlistPage implements OnInit {
 
   async GetData() {
     const fetchData = async () => {
-      const loading = await this.loadingController.create({
-        message: 'Please wait',
-        duration: 20000
-      });
-      await loading.present();
+      // const loading = await this.loadingController.create({
+      //   message: 'Please wait',
+      //   duration: 20000
+      // });
+      // await loading.present();
 
       this.http.get(this.Site_url + 'get_detailAgentstats').subscribe(data => {
         this.AgentList = data;
@@ -55,7 +55,7 @@ export class AgentlistPage implements OnInit {
       });
 
     
-      loading.dismiss();
+      // loading.dismiss();
     };
 
     // Call initially and then every 15 seconds

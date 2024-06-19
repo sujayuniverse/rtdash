@@ -42,7 +42,19 @@
 
               <tr *ngFor="let item of AgentList">
                 <!-- <td><ion-icon class="icon-colour" name="call"></ion-icon></td> -->
-                <td>{{item.MODE}}</td>  
+                <!-- <td>{{item.MODE}}</td>   -->
+                 <td>
+                  <ng-container [ngSwitch]="item.MODE">
+                    <span *ngSwitchCase="50">AUX</span>
+                    <span *ngSwitchCase="0">UNKNOWN</span>
+                    <span *ngSwitchCase="10">UNSTAF</span>
+                    <span *ngSwitchCase="20">AVAIL</span>
+                    <span *ngSwitchCase="30">ACD</span>
+                    <span *ngSwitchCase="40">ACW</span>
+                    <span *ngSwitchCase="60">DACD</span>
+                    <span *ngSwitchDefault>{{ item.MODE }}</span>
+                  </ng-container>
+                 </td>
                 <td>{{item.AGENTNAME}}</td>
                 <td>{{item.AUXREASON}}</td>
                 <td>{{item.STATE}}</td>

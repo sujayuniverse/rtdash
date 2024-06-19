@@ -49,11 +49,11 @@ export class ServicelevelPage implements OnInit, AfterViewInit {
 
   async GetData() {
     const fetchData = async () => {
-      const loading = await this.loadingController.create({
-        message: 'Please wait',
-        duration: 20000
-      });
-      await loading.present();
+      // const loading = await this.loadingController.create({
+      //   message: 'Please wait',
+      //   duration: 20000
+      // });
+      // await loading.present();
 
       this.http.get(this.Site_url + 'getSlOverall').subscribe(data => {
         this.OverallData = data;
@@ -79,7 +79,7 @@ export class ServicelevelPage implements OnInit, AfterViewInit {
         this.createChart(this.pieChartCanvas4, [this.POMData.NonconnectedPercentage, this.POMData.connectedPercentage], ['#f6fcfd', '#d31d25']);
       });
 
-      loading.dismiss();
+      // loading.dismiss();
     };
 
     // Call initially and then every 15 seconds

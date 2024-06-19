@@ -44,11 +44,11 @@ export class DailystatsPage implements OnInit {
 
   async GetData() {
     const fetchData = async () => {
-      const loading = await this.loadingController.create({
-        message: 'Please wait',
-        duration: 20000
-      });
-      await loading.present();
+      // const loading = await this.loadingController.create({
+      //   message: 'Please wait',
+      //   duration: 20000
+      // });
+      // await loading.present();
   
       this.http.get<any>(this.Site_url + 'Get_DailyStats').subscribe(
         (data) => {
@@ -72,7 +72,7 @@ export class DailystatsPage implements OnInit {
           console.error('Error fetching daily stats:', error);
         },
         () => {
-          loading.dismiss(); // Dismiss loading indicator once data is loaded
+          // loading.dismiss(); // Dismiss loading indicator once data is loaded
         }
       );
     };
