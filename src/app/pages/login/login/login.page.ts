@@ -11,48 +11,50 @@ import { ToastController } from '@ionic/angular';
 export class LoginPage implements OnInit {
 
   EmailId: string = ""
-  password : string = ""
-    constructor(private router: Router,
-      private alertCtrl: AlertController,
-      public loadingController: LoadingController,
-      private toastController: ToastController) {
-  
+  password: string = ""
+  constructor(private router: Router,
+    private alertCtrl: AlertController,
+    public loadingController: LoadingController,
+    private toastController: ToastController) {
+
+  }
+
+
+
+  async Login() {
+    if (this.EmailId == '' || this.EmailId == null) {
+      this.showError('Please enter registered email id')
     }
-  
-  
-  
-    async Login() {
-      if (this.EmailId == '' || this.EmailId == null) {
-        this.showError('Please enter registered email id')
-      }
-      else{
-        const loading = await this.loadingController.create({
-          message: 'Please wait',
-          duration: 10000
-        });
-        await loading.present();
-        if(this.EmailId == "admin@gmail.com" && this.password =="1234"){
-          this.router.navigate(['/dashboard']);
-      
-        }
-        else{
-          this.showError('Please enter valid credentials')
-  
-        }
-        loading.dismiss()
-        
-      }
-    }
-  
-    async showError(message: string) {
-      const toast = await this.toastController.create({
-        message: message,
-        duration: 3000,
+    else {
+      const loading = await this.loadingController.create({
+        message: 'Please wait',
+        duration: 10000
       });
-      toast.present();
-  
+      await loading.present();
+      if (this.EmailId == "admin@gmail.com" && this.password == "1234") {
+        this.router.navigate(['/dashboard']);
+        this.EmailId = '';
+        this.password = '';
+      }
+      else {
+        this.EmailId = '';
+        this.password = '';
+        this.showError('Please enter valid credentials')
+      }
+      loading.dismiss()
+
     }
-  
+  }
+
+  async showError(message: string) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 3000,
+    });
+    toast.present();
+
+  }
+
   ngOnInit() {
   }
 
