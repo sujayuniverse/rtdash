@@ -55,7 +55,7 @@ export class AppComponent {
           icon: "home"
         },
         {
-          title: "Agent",
+          title: "Agents",
           url: "/agentlist",
           icon: "people"
         },
