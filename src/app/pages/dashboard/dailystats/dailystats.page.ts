@@ -359,9 +359,9 @@ export class DailystatsPage implements OnInit {
     if (element && timeTextElement) {
       const gaugeOptions = {
         hasNeedle: true,
-        needleColor: 'rgba(212,30,38,1)',
+        needleColor: 'green',
         needleUpdateSpeed: 1000,
-        arcColors: ['rgba(212,30,38,1)', 'yellow', 'blue', 'green'],
+        arcColors: ['green', 'orange', 'yellow', 'blue','rgba(212,30,38,1)'],
         arcDelimiters: [20, 40, 60, 80],
         rangeLabel: ['00:00', '10:00'],
         centralLabel: '',
@@ -393,7 +393,7 @@ export class DailystatsPage implements OnInit {
         hasNeedle: true,
         needleColor: 'green',
         needleUpdateSpeed: 1500,
-        arcColors: ['red', 'orange', 'yellow', 'blue', 'green'],
+        arcColors: ['rgba(212,30,38,1)', 'orange', 'yellow', 'blue', 'green'],
         arcDelimiters: [20, 40, 60, 80],
         rangeLabel: ['0%', '100%'],
       };
@@ -409,10 +409,6 @@ export class DailystatsPage implements OnInit {
     }
   }
 
-
-
-
-
   updateACDTimeGaugeChart() {
     const element = document.querySelector('#ACDTimeGaugeArea') as HTMLElement;
     const percentageTextElement = document.querySelector('#ACDTimePercentageText') as HTMLElement;
@@ -424,7 +420,7 @@ export class DailystatsPage implements OnInit {
         needleUpdateSpeed: 1500,
         arcColors: ['rgba(212,30,38,1)', 'orange', 'yellow', 'blue', 'green'],
         arcDelimiters: [20, 40, 60, 80],
-        rangeLabel: ['00:00', '10:00'],
+        rangeLabel: ['00:00', '30:00'],
       };
 
       if (!this.gaugeChartACDTime) {
@@ -435,7 +431,7 @@ export class DailystatsPage implements OnInit {
       const [minutes, seconds] = this.ACDtime.split(':').map(Number);
       const totalSeconds = (minutes * 60) + seconds;
 
-      const maxSeconds = 600; // 10 minutes
+      const maxSeconds = 1800; // 30 minutes
       const percentage = (totalSeconds / maxSeconds) * 100;
 
       this.gaugeChartACDTime.updateNeedle(percentage);

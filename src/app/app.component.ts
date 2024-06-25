@@ -30,7 +30,7 @@ export class AppComponent {
           icon: "pie-chart"
         },
         {
-          title: "Threshold Stats",
+          title: "Daily Stats",
           url: "/dailystats",
           icon: "stats-chart"
         },

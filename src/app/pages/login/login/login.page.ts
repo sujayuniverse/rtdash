@@ -31,12 +31,12 @@ export class LoginPage implements OnInit {
           duration: 10000
         });
         await loading.present();
-        if(this.EmailId == "admin@gmail.com"){
+        if(this.EmailId == "admin@gmail.com" && this.password =="1234"){
           this.router.navigate(['/dashboard']);
       
         }
         else{
-          this.showError('Please enter the registered phone number')
+          this.showError('Please enter valid credentials')
   
         }
         loading.dismiss()
