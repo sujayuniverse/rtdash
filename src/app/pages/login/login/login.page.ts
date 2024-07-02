@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
       if (this.Username != "" && this.Username != "") {
         const loading = await this.loadingController.create({
           message: 'Please wait',
-          duration: 7000
+          duration: 50000
         });
         await loading.present();
 
@@ -59,6 +59,7 @@ export class LoginPage implements OnInit {
             this.showError('Welcome ' + this.Username)
             this.Username = "";
             this.Password = "";
+            loading.dismiss()
             this.router.navigate(['/dashboard']);
           }
           else {
