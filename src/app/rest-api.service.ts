@@ -5,8 +5,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   providedIn: 'root'
 })
 export class RestApiService {
-  base_url = 'https://ccmobuat.ucb.com.bd:8443/api/';
-  //'http://localhost:62581/api/';
+  base_url = ' http://localhost:62581/api/';
   constructor(public http: HttpClient)
   {
  

@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
   Username: string = "";
   Password: string = "";
   Site_url: string = "";
-  ReturnString: string = ""
+  ReturnString: any = ""
 
   constructor(private router: Router,
     private alertCtrl: AlertController,
@@ -29,6 +29,8 @@ export class LoginPage implements OnInit {
     private baseurl: SetbaseurlService,
     public restApiService: RestApiService,
     private activatedRoute: ActivatedRoute) {
+      this.Site_url = this.baseurl.Set_base_url;
+
   }
 
 
@@ -46,15 +48,13 @@ export class LoginPage implements OnInit {
         });
         await loading.present();
 
-        var dataToSend =
-        {
-          "Username": this.Username,
-          "Password": this.Password,
-        };
 
-        this.restApiService.SaveUser(dataToSend).subscribe(dataReturnFromService => {
-          console.log(dataReturnFromService)
-          if (dataReturnFromService == "Valid") {
+
+        this.http.get(this.Site_url + '/get_login/'+this.Username+'/'+this.Password).subscribe(data => {
+          this.ReturnString = data;
+          console.log('ReturnString : ', this.ReturnString);
+
+          if (this.ReturnString == "Valid") {
             loading.dismiss();
             this.showError('Welcome ' + this.Username)
             this.Username = "";
@@ -68,7 +68,35 @@ export class LoginPage implements OnInit {
             this.Password = "";
             loading.dismiss()
           }
-        })
+  
+        });
+
+        
+       
+
+        // var dataToSend =
+        // {
+        //   "Username": this.Username,
+        //   "Password": this.Password,
+        // };
+
+        // this.restApiService.SaveUser(dataToSend).subscribe(dataReturnFromService => {
+        //   console.log(dataReturnFromService)
+        //   if (dataReturnFromService == "Valid") {
+        //     loading.dismiss();
+        //     this.showError('Welcome ' + this.Username)
+        //     this.Username = "";
+        //     this.Password = "";
+        //     loading.dismiss()
+        //     this.router.navigate(['/dashboard']);
+        //   }
+        //   else {
+        //     this.showError('Invalid credentials. Please try again later.')
+        //     this.Username = "";
+        //     this.Password = "";
+        //     loading.dismiss()
+        //   }
+        // })
       }
     }
 
